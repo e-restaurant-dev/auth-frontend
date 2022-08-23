@@ -1,7 +1,12 @@
 {
   "compilerOptions": {
     "target": "ESNext",
-    "lib": ["DOM", "DOM.Iterable", "ESNext"],
+    "lib": [
+      "DOM",
+      "DOM.Iterable",
+      "ESNext",
+      "ES6"
+    ],
     "allowJs": false,
     "skipLibCheck": true,
     "esModuleInterop": false,
@@ -16,6 +21,7 @@
     "jsx": "react-jsx",
     "useDefineForClassFields": true,
     "noImplicitAny": true,
+    "noImplicitThis": true,
     "alwaysStrict": true,
     "exactOptionalPropertyTypes": true,
     "noImplicitOverride": true,
@@ -24,9 +30,17 @@
     "strictFunctionTypes": true,
     "strictNullChecks": true,
     "paths": {
-      "#app/*": ["./src/*"],
+      "#app/*": [
+        "./src/*"
+      ],
     }
   },
-  "include": ["src"],
-  "references": [{ "path": "./tsconfig.node.json" }]
+  "include": [
+    "src"
+  ],
+  "references": [
+    {
+      "path": "./tsconfig.node.json"
+    }
+  ]
 }
