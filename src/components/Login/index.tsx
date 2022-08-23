@@ -1,4 +1,11 @@
-import { FunctionComponent } from 'react'
-import { PanelProps } from '../Panel'
+import { AuthInput, AuthPanel } from '../AuthPanel'
 
-export const Login: FunctionComponent<PanelProps> = (props) => <div>123</div>
+export const LoginPanel = () => (
+    <AuthPanel
+        title="Login"
+        buttonTitle="Login"
+    >
+        <AuthInput placeholder="Email" />
+        <AuthInput placeholder="Password" />
+    </AuthPanel>
+)

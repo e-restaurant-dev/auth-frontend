@@ -1,21 +1,12 @@
+import { LoginPanel } from './components/Login'
+import { RegistrationPanel } from './components/Registration'
+import { Paper, Button, Stack } from "@mui/material"
 import { FunctionComponent, useContext } from 'react'
-import { Login } from './components/Login'
-import { PanelProps } from './components/Panel'
 import { AuthStateContext, AuthStates } from './Context'
 
-const panels: Record<AuthStates, FunctionComponent<PanelProps>> = {
-    [AuthStates.LOGIN]: ({ action }) => (
-        <>
-            <input placeholder="login" />
-            <button onClick={action}>login</button>
-        </>
-    ),
-    [AuthStates.REGISTRATION]: ({ action }) => (
-        <>
-            <input placeholder="registration" />
-            <button onClick={action}>Registration</button>
-        </>
-    ),
+const panels: Record<AuthStates, FunctionComponent> = {
+    [AuthStates.LOGIN]: RegistrationPanel,
+    [AuthStates.REGISTRATION]: LoginPanel,
 }
 
 export const App: FunctionComponent = () => {
@@ -23,13 +14,19 @@ export const App: FunctionComponent = () => {
 
     const Panel = panels[state]
 
-    return (
-        <div>
-            <Panel action={() => {
-                if (state === AuthStates.LOGIN) setState(AuthStates.REGISTRATION)
-                else setState(AuthStates.LOGIN)
-            }}></Panel>
-        </div>
+    const onChangePanel = () => {
+        if (state === AuthStates.LOGIN) setState(AuthStates.REGISTRATION)
+        else setState(AuthStates.LOGIN)
+    }
 
+    return (
+        <Paper elevation={1} sx={{ maxWidth: 'md', py: '30px', m: '30px auto' }} >
+            <Stack sx={{ m: '30px auto', maxWidth: '500px' }}>
+                <Panel />
+            </Stack>
+            <Stack sx={{ m: '0 auto', maxWidth: '200px' }}>
+                <Button onClick={onChangePanel} variant='contained' sx={{ m: 3 }}>{state}</Button>
+            </Stack>
+        </Paper>
     )
 }
